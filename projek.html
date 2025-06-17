@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projek Gratis - Panz Dev Cihuy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* === Variabel & Tema Utama === */
+    :root {
+      --primary-color: #3a7bd5;      /* Biru Langit Profesional */
+      --secondary-color: #FFFFFF;   /* Putih Bersih */
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --text-color: #2c3e50;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+    }
+
+    /* === Gaya Dasar Body === */
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-color);
+      margin: 0;
+      padding-inline: clamp(1rem, 5vw, 2.5rem);
+      padding-block: clamp(1.25rem, 4vh, 2.5rem);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+      background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+    }
+    
+    /* === Kartu Utama (Card) === */
+    .card {
+      max-width: 600px;
+      width: 100%;
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      padding: clamp(1.5rem, 5vw, 2.5rem);
+      text-align: center;
+      box-shadow: 0 8px 32px 0 var(--shadow-color);
+      animation: fadeInUp .8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 6vw, 1.75rem);
+      font-weight: 700;
+      margin: 0 0 25px;
+    }
+    
+    /* === Daftar Proyek === */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
+    
+    .project-item {
+      background: rgba(0, 0, 0, 0.05);
+      padding: 15px 20px;
+      border-radius: 10px;
+    }
+    
+    .project-item h3 {
+      margin: 0 0 5px;
+      font-size: 1.1rem;
+    }
+    
+    .project-item p {
+      margin: 0 0 15px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    
+    /* === Tombol & Label Aksi === */
+    .download-btn {
+      display: inline-block;
+      text-decoration: none;
+      color: #fff;
+      background: var(--primary-color);
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background-color .3s;
+    }
+
+    .download-btn:hover {
+      background: #2a62b1; /* Versi lebih gelap dari biru primer */
+    }
+    
+    .download-btn i {
+      margin-right: 8px;
+    }
+    
+    .status-label {
+      display: inline-block;
+      background: #ffc107;
+      color: #333;
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .status-label i {
+      margin-right: 8px;
+    }
+
+    /* === Tombol Kembali === */
+    .back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--text-color);
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid var(--text-color);
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .back-btn:hover {
+      background-color: var(--text-color);
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Daftar Projek Gratis</h1>
+    <div id="project-list" class="project-list"></div>
+    <a href="index.html" class="back-btn">
+      <i class="fa-solid fa-arrow-left"></i> Kembali
+    </a>
+  </div>
+
+  <script>
+    // --- Data Konfigurasi Proyek ---
+    const projects = [
+      {
+        name: "Bot Notifikasi WhatsApp",
+        description: "Bot sederhana yang dibuat dengan Node.js untuk mengirim notifikasi ke grup WhatsApp.",
+        status: 'completed',
+        downloadUrl: "https://link-download-1.com"
+      },
+      {
+        name: "Sistem Kasir Toko (CLI)",
+        description: "Aplikasi kasir berbasis command-line interface (CLI) yang dibuat dengan Python.",
+        status: 'progress',
+        downloadUrl: ""
+      },
+      {
+        name: "Script Auto-Post Instagram",
+        description: "Script Python menggunakan Selenium untuk otomatisasi posting gambar ke Instagram.",
+        status: 'completed',
+        downloadUrl: "https://link-download-2.com"
+      },
+      {
+        name: "Website Prediksi Cuaca",
+        description: "Website dinamis yang mengambil data dari API publik untuk menampilkan ramalan cuaca.",
+        status: 'progress',
+        downloadUrl: ""
+      },
+    ];
+
+    // --- Logika untuk Menampilkan Daftar Proyek ---
+    const projectListContainer = document.getElementById("project-list");
+
+    projects.forEach(project => {
+      const item = document.createElement("div");
+      item.className = "project-item";
+
+      let actionElement = '';
+
+      // Cek status proyek untuk menentukan tombol/label
+      if (project.status === 'completed') {
+        actionElement = `
+          <a href="${project.downloadUrl}" class="download-btn" target="_blank">
+            <i class="fa-solid fa-download"></i> Download
+          </a>
+        `;
+      } else if (project.status === 'progress') {
+        actionElement = `
+          <div class="status-label">
+            <i class="fa-solid fa-gears"></i> Dalam Pengerjaan
+          </div>
+        `;
+      }
+
+      // Gabungkan semua elemen menjadi satu blok HTML
+      item.innerHTML = `
+        <h3>${project.name}</h3>
+        <p>${project.description}</p>
+        ${actionElement}
+      `;
+
+      projectListContainer.appendChild(item);
+    });
+  </script>
+
+</body>
+</html>
